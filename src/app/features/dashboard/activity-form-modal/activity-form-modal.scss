@@ -1,0 +1,14 @@
+:host {
+  display: block;
+}
+
+.activity-form nz-input-number {
+  width: 100%;
+}
+
+.activity-form__footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 8px;
+}

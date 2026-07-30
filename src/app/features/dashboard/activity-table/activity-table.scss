@@ -1,0 +1,14 @@
+:host {
+  display: block;
+}
+
+.activity-table__input {
+  width: 100%;
+}
+
+.activity-table__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}

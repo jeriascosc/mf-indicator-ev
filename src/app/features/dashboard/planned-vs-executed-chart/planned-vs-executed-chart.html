@@ -1,0 +1,12 @@
+<div class="ev-block planned-vs-executed">
+  <div class="ev-block__label">
+    <nz-icon nzType="rise" nzTheme="outline" data-testid="rise-icon" />
+    <span data-testid="planned-vs-executed-label">Comportamiento Planeado vs Ejecutado</span>
+  </div>
+  <div
+    class="planned-vs-executed__chart"
+    data-testid="planned-vs-executed-chart"
+    echarts
+    [options]="chartOption()"
+  ></div>
+</div>

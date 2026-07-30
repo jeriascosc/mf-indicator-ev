@@ -1,0 +1,40 @@
+:host {
+  display: block;
+}
+
+.index-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.index-card {
+  flex: 1 1 200px;
+  min-width: 180px;
+  /* Cuadros con las esquinas redondeadas, como pide el disenio. */
+  border-radius: 16px;
+  padding: 16px 20px;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.index-card__label {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  opacity: 0.9;
+}
+
+.index-card__value {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.index-card__status {
+  font-size: 12px;
+  opacity: 0.9;
+}

@@ -1,0 +1,115 @@
+<div class="ev-block">
+  <div class="ev-block__label" data-testid="activity-table-label">Actividad Seleccionada</div>
+
+  <nz-table
+    #activityTable
+    nzBordered
+    nzSize="middle"
+    [nzData]="rows()"
+    [nzShowPagination]="false"
+    [nzFrontPagination]="false"
+    nzNoResult="Sin actividades registradas"
+  >
+    <thead>
+      <tr>
+        <th nzWidth="26%">Nombre</th>
+        <th>BAC</th>
+        <th>% Planeado</th>
+        <th>% Completado</th>
+        <th>AC</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (row of activityTable.data; track row.name) {
+        <tr data-testid="activity-row">
+          <td data-testid="cell-name">{{ displayName() }}</td>
+          <td>
+            <nz-input-number
+              class="activity-table__input"
+              data-testid="cell-bac"
+              [nzMin]="0"
+              [nzStep]="100"
+              [ngModel]="row.totalPlannedBudget"
+              (ngModelChange)="patch('totalPlannedBudget', $event)"
+            />
+          </td>
+          <td>
+            <nz-input-number
+              class="activity-table__input"
+              data-testid="cell-porcent-planned"
+              [nzMin]="0"
+              [nzMax]="1"
+              [nzStep]="0.05"
+              [ngModel]="row.porcentPlanned"
+              (ngModelChange)="patch('porcentPlanned', $event)"
+            />
+          </td>
+          <td>
+            <nz-input-number
+              class="activity-table__input"
+              data-testid="cell-porcent-complete"
+              [nzMin]="0"
+              [nzMax]="1"
+              [nzStep]="0.05"
+              [ngModel]="row.porcentComplete"
+              (ngModelChange)="patch('porcentComplete', $event)"
+            />
+          </td>
+          <td>
+            <nz-input-number
+              class="activity-table__input"
+              data-testid="cell-actual-cost"
+              [nzMin]="0"
+              [nzStep]="100"
+              [ngModel]="row.actualCost"
+              (ngModelChange)="patch('actualCost', $event)"
+            />
+          </td>
+        </tr>
+      }
+    </tbody>
+  </nz-table>
+
+  <div class="activity-table__actions">
+    <button
+      nz-button
+      nzType="default"
+      type="button"
+      data-testid="btn-add"
+      [disabled]="busy()"
+      (click)="onAdd()"
+    >
+      <nz-icon nzType="plus" nzTheme="outline" />
+      Agregar
+    </button>
+
+    <button
+      nz-button
+      nzType="primary"
+      type="button"
+      data-testid="btn-refresh"
+      [disabled]="busy() || !hasActivity()"
+      (click)="onRefresh()"
+    >
+      <nz-icon nzType="reload" nzTheme="outline" />
+      Refrescar
+    </button>
+
+    <button
+      nz-button
+      nzDanger
+      nzType="primary"
+      type="button"
+      data-testid="btn-delete"
+      nz-popconfirm
+      nzPopconfirmTitle="¿Eliminar la actividad seleccionada?"
+      nzOkText="Eliminar"
+      nzCancelText="Cancelar"
+      [disabled]="busy() || !hasActivity()"
+      (nzOnConfirm)="onDelete()"
+    >
+      <nz-icon nzType="delete" nzTheme="outline" />
+      Eliminar
+    </button>
+  </div>
+</div>

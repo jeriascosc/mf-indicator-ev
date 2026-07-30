@@ -1,0 +1,21 @@
+<div class="ev-block">
+  <div class="ev-block__label">Estado de la actividad</div>
+  <div class="index-cards">
+    @for (card of cards(); track card.key) {
+      <div
+        class="index-card"
+        [attr.data-testid]="'index-card-' + card.key"
+        [attr.data-color]="card.color"
+        [style.background-color]="card.color"
+      >
+        <span class="index-card__label">{{ card.label }}</span>
+        <span class="index-card__value" [attr.data-testid]="'index-value-' + card.key">
+          {{ card.value }}
+        </span>
+        @if (card.status) {
+          <span class="index-card__status">{{ card.status }}</span>
+        }
+      </div>
+    }
+  </div>
+</div>

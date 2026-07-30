@@ -1,0 +1,32 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.general-alert {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.general-alert__title {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.general-alert__icon {
+  font-size: 18px;
+}
+
+.general-alert__subtitle {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.general-alert__detail {
+  margin-top: 4px;
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.55);
+}
