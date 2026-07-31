@@ -1,0 +1,32 @@
+<nz-alert
+  class="general-alert"
+  data-testid="general-analysis-alert"
+  [nzType]="alertType()"
+  [attr.data-alert-type]="alertType()"
+  [nzMessage]="titleTpl"
+  [nzDescription]="descriptionTpl"
+>
+</nz-alert>
+
+<ng-template #titleTpl>
+  <span class="general-alert__title">
+    <span data-testid="general-analysis-title">Análisis General</span>
+    <nz-icon
+      class="general-alert__icon"
+      data-testid="general-analysis-icon"
+      [nzType]="alertIcon()"
+      nzTheme="outline"
+    />
+  </span>
+</ng-template>
+
+<ng-template #descriptionTpl>
+  <div class="general-alert__subtitle" data-testid="general-analysis-subtitle">
+    {{ analysis() }}
+  </div>
+  @if (statusDetail()) {
+    <div class="general-alert__detail" data-testid="general-analysis-detail">
+      {{ statusDetail() }}
+    </div>
+  }
+</ng-template>

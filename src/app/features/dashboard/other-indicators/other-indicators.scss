@@ -1,0 +1,41 @@
+:host {
+  display: block;
+}
+
+.other-indicators {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: flex-start;
+}
+
+/* Circulo gris con fondo azul palido: etiqueta en negro y valor en azul fuerte. */
+.other-indicator {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  border: 2px solid #8c8c8c;
+  background-color: #e6f4ff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px;
+  text-align: center;
+}
+
+.other-indicator__label {
+  font-size: 15px;
+  font-weight: 700;
+  color: #000000;
+  letter-spacing: 0.04em;
+}
+
+.other-indicator__value {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0958d9;
+  word-break: break-word;
+  line-height: 1.2;
+}

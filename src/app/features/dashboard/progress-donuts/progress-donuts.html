@@ -1,0 +1,21 @@
+<div class="ev-block progress-donuts">
+  <div class="ev-block__label">Avance sobre el BAC</div>
+  <div class="progress-donuts__grid">
+    @for (donut of donuts(); track donut.key) {
+      <div class="progress-donut">
+        <div class="progress-donut__title" [attr.data-testid]="'donut-title-' + donut.key">
+          {{ donut.title }}
+        </div>
+        <div
+          class="progress-donut__chart"
+          [attr.data-testid]="'donut-chart-' + donut.key"
+          echarts
+          [options]="donut.option"
+        ></div>
+        <div class="progress-donut__caption" [attr.data-testid]="'donut-caption-' + donut.key">
+          {{ donut.percentText }} del BAC
+        </div>
+      </div>
+    }
+  </div>
+</div>

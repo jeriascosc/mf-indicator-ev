@@ -1,0 +1,21 @@
+.app-header {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding: 16px 24px;
+  background-color: #001529;
+  color: #ffffff;
+}
+
+.app-header__title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  /* El reset de NG-ZORRO fija un color oscuro para h1: hay que ganarle sobre el fondo navy. */
+  color: #ffffff;
+}
+
+.app-header__subtitle {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.65);
+}

@@ -1,0 +1,35 @@
+<div class="dashboard">
+  <app-general-analysis-alert [interpretation]="interpretation()" />
+
+  <app-activity-selector
+    [activities]="activities()"
+    [selectedId]="selectedId()"
+    [disabled]="loading()"
+    (activitySelected)="onActivitySelected($event)"
+  />
+
+  <app-performance-index-cards
+    [indicator]="indicator()"
+    [cpiStatus]="interpretation()?.cpiStatus ?? ''"
+    [spiStatus]="interpretation()?.spiStatus ?? ''"
+  />
+
+  <div nz-row [nzGutter]="16">
+    <div nz-col [nzXs]="24" [nzLg]="14">
+      <app-planned-vs-executed-chart [indicator]="indicator()" [activity]="selected()" />
+    </div>
+    <div nz-col [nzXs]="24" [nzLg]="10">
+      <app-progress-donuts [activity]="selected()" [indicator]="indicator()" />
+    </div>
+  </div>
+
+  <app-other-indicators [indicator]="indicator()" />
+
+  <app-activity-table
+    [activity]="selected()"
+    [busy]="loading()"
+    (addRequested)="openCreateModal()"
+    (updateRequested)="onUpdateRequested($event)"
+    (deleteRequested)="onDeleteRequested($event)"
+  />
+</div>
