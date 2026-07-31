@@ -1,0 +1,13 @@
+<div class="ev-block">
+  <div class="ev-block__label" data-testid="other-indicators-label">Otros indicadores</div>
+  <div class="other-indicators">
+    @for (item of items(); track item.key) {
+      <div class="other-indicator" [attr.data-testid]="'other-indicator-' + item.key">
+        <span class="other-indicator__label">{{ item.label }}</span>
+        <span class="other-indicator__value" [attr.data-testid]="'other-value-' + item.key">
+          {{ item.value }}
+        </span>
+      </div>
+    }
+  </div>
+</div>

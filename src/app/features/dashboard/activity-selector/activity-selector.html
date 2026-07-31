@@ -1,0 +1,17 @@
+<div class="ev-block activity-selector">
+  <label class="activity-selector__label" for="activity-select">Actividad Seleccionada</label>
+  <nz-select
+    id="activity-select"
+    class="activity-selector__select"
+    data-testid="activity-select"
+    nzShowSearch
+    nzAllowClear="false"
+    nzPlaceHolder="Seleccione una actividad"
+    nzNotFoundContent="No hay actividades registradas"
+    [nzOptions]="options()"
+    [nzDisabled]="disabled() || isEmpty()"
+    [ngModel]="selectedId()"
+    (ngModelChange)="onChange($event)"
+  >
+  </nz-select>
+</div>
