@@ -3,6 +3,7 @@ import type { EChartsCoreOption } from 'echarts/core';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NgxEchartsDirective } from 'ngx-echarts';
 
+import type { Activity } from '../../../core/models/activity';
 import type { Indicator } from '../../../core/models/indicator';
 import { numberOrZero } from '../../../core/utils/format';
 
@@ -10,9 +11,14 @@ import { numberOrZero } from '../../../core/utils/format';
 export const PV_COLOR = '#1890ff';
 /** Violeta para el valor ganado. */
 export const EV_COLOR = '#722ed1';
+/** Turquesa para el costo real. */
+export const AC_COLOR = '#1FC7AF';
 
 /**
- * Grafica de barras que compara el avance planificado (PV) con el ejecutado (EV).
+ * Grafica de barras que compara el avance planificado (PV), el ejecutado (EV) y el costo real (AC).
+ *
+ * AC no viaja en `IndicatorResponse` -- es un dato de entrada, no un indicador calculado -- asi que
+ * se toma del propio registro de la actividad.
  *
  * Sin actividad seleccionada las barras quedan en cero, no desaparecen, para que el bloque
  * conserve su tamanio y el usuario vea que no hay datos en lugar de un hueco.
@@ -26,13 +32,15 @@ export const EV_COLOR = '#722ed1';
 })
 export class PlannedVsExecutedChart {
   readonly indicator = input<Indicator | null>(null);
+  readonly activity = input<Activity | null>(null);
 
   readonly pv = computed(() => numberOrZero(this.indicator()?.pv));
   readonly ev = computed(() => numberOrZero(this.indicator()?.ev));
+  readonly ac = computed(() => numberOrZero(this.activity()?.actualCost));
 
   readonly chartOption = computed<EChartsCoreOption>(() => ({
     tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
-    legend: { data: ['PV', 'EV'], bottom: 0 },
+    legend: { data: ['PV', 'EV', 'AC'], bottom: 0 },
     // ECharts 6 deprecó `containLabel`: se reserva el margen a mano para las etiquetas del eje.
     grid: { left: 80, right: 24, top: 24, bottom: 56 },
     xAxis: { type: 'category', data: ['Avance'] },
@@ -54,6 +62,14 @@ export class PlannedVsExecutedChart {
         itemStyle: { color: EV_COLOR, borderRadius: [4, 4, 0, 0] },
         label: { show: true, position: 'top' },
         data: [this.ev()],
+      },
+      {
+        name: 'AC',
+        type: 'bar',
+        barMaxWidth: 72,
+        itemStyle: { color: AC_COLOR, borderRadius: [4, 4, 0, 0] },
+        label: { show: true, position: 'top' },
+        data: [this.ac()],
       },
     ],
   }));
